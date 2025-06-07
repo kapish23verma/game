@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic Games Collection</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Main Menu -->
+        <div id="main-menu" class="screen active">
+            <div class="stars"></div>
+            <div class="floating-particles"></div>
+            <div class="menu-container">
+                <h1 class="main-title" data-text="EPIC GAMES">
+                    <span class="epic">EPIC</span>
+                    <span class="games">GAMES</span>
+                </h1>
+                <p class="subtitle">Choose Your Adventure</p>
+                
+                <div class="game-cards">
+                    <div class="game-card" onclick="startGame('slingshot')">
+                        <div class="card-icon">🎯</div>
+                        <h3>Slingshot Madness</h3>
+                        <p>Destroy the bank and collect treasures!</p>
+                        <div class="play-btn">PLAY NOW</div>
+                    </div>
+                    
+                    <div class="game-card" onclick="startGame('battle')">
+                        <div class="card-icon">⚔️</div>
+                        <h3>Battle of Royals</h3>
+                        <p>Strategic card battles with epic warriors!</p>
+                        <div class="play-btn">PLAY NOW</div>
+                    </div>
+                    
+                    <div class="game-card" onclick="startGame('gems')">
+                        <div class="card-icon">💎</div>
+                        <h3>Gem Crusher</h3>
+                        <p>Match brilliant gems and create epic combos!</p>
+                        <div class="play-btn">PLAY NOW</div>
+                    </div>
+                    
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Slingshot Game -->
+        <div id="slingshot-game" class="screen">
+            <div class="game-header">
+                <button class="back-btn" onclick="goToMenu()">← Back</button>
+                <h2>🎯 Slingshot Madness</h2>
+                <div class="score">
+                    <span>💰 Coins: <span id="coins">0</span></span>
+                    <span>🎯 Shots: <span id="shots">0</span></span>
+                    <span>📊 Accuracy: <span id="accuracy">0%</span></span>
+                </div>
+            </div>
+            
+            <div class="game-area">
+                <div class="bank-scene">
+                    <div class="bank-exterior">
+                        <div class="bank-roof">
+                            <div class="bank-sign">💎 ROYAL BANK 💎</div>
+                        </div>
+                        <div class="bank-pillars">
+                            <div class="pillar"></div>
+                            <div class="pillar"></div>
+                            <div class="pillar"></div>
+                            <div class="pillar"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="bank-building">
+                        <div class="bank-door"></div>
+                        <div class="bank-windows">
+                            <div class="window"></div>
+                            <div class="window"></div>
+                        </div>
+                        
+                        <div class="bank-vault">
+                            <div class="vault-door">
+                                <div class="vault-handle"></div>
+                                <div class="vault-lock"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="bank-wall">
+                            <div class="bank-item treasure-chest" data-value="50" data-type="chest">
+                                <div class="chest-body"></div>
+                                <div class="chest-lid"></div>
+                                <div class="chest-lock"></div>
+                            </div>
+                            <div class="bank-item diamond-sprite" data-value="100" data-type="diamond">
+                                <div class="diamond-facet diamond-top"></div>
+                                <div class="diamond-facet diamond-left"></div>
+                                <div class="diamond-facet diamond-right"></div>
+                                <div class="diamond-shine"></div>
+                            </div>
+                            <div class="bank-item gold-trophy" data-value="75" data-type="trophy">
+                                <div class="trophy-base"></div>
+                                <div class="trophy-cup"></div>
+                                <div class="trophy-handles"></div>
+                            </div>
+                            <div class="bank-item royal-ring" data-value="200" data-type="ring">
+                                <div class="ring-band"></div>
+                                <div class="ring-gem"></div>
+                                <div class="ring-shine"></div>
+                            </div>
+                            <div class="bank-item gold-coin" data-value="25" data-type="coin">
+                                <div class="coin-face"></div>
+                                <div class="coin-edge"></div>
+                                <div class="coin-symbol">$</div>
+                            </div>
+                            <div class="bank-item royal-crown" data-value="150" data-type="crown">
+                                <div class="crown-base"></div>
+                                <div class="crown-peaks"></div>
+                                <div class="crown-jewels"></div>
+                            </div>
+                            <div class="bank-item medal-sprite" data-value="80" data-type="medal">
+                                <div class="medal-ribbon"></div>
+                                <div class="medal-disc"></div>
+                                <div class="medal-star"></div>
+                            </div>
+                            <div class="bank-item money-stack" data-value="120" data-type="money">
+                                <div class="money-bill money-bill-1"></div>
+                                <div class="money-bill money-bill-2"></div>
+                                <div class="money-bill money-bill-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slingshot-area">
+                    <div class="slingshot-base"></div>
+                    <div class="slingshot">
+                        <div class="slingshot-handle"></div>
+                        <div class="slingshot-frame-left"></div>
+                        <div class="slingshot-frame-right"></div>
+                        <div class="slingshot-band-left" id="bandLeft"></div>
+                        <div class="slingshot-band-right" id="bandRight"></div>
+                        <div class="projectile" id="projectile">
+                            <div class="cannonball">
+                                <div class="cannonball-shine"></div>
+                                <div class="cannonball-shadow"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="trajectory-line" id="trajectoryLine"></div>
+                    
+                    <div class="power-meter">
+                        <div class="power-label">Power</div>
+                        <div class="power-bar">
+                            <div class="power-fill" id="powerFill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <p>🎯 Click and drag the red ball backwards to aim. Release to shoot!</p>
+                <div class="control-buttons">
+                    <button onclick="resetSlingshotGame()">🔄 Reset Game</button>
+                    <button onclick="autoAim()">🤖 Auto Aim</button>
+                    <button onclick="quickShot()" id="quick-shot-btn">⚡ Quick Shot</button>
+                    <button onclick="toggleSlowMotion()" id="slow-motion-btn">🕐 Slow Motion: OFF</button>
+                    <button onclick="showSlingshotHelp()">❓ Help</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Battle Game -->
+        <div id="battle-game" class="screen">
+            <div class="game-header">
+                <button class="back-btn" onclick="goToMenu()">← Back</button>
+                <h2>⚔️ Battle of Royals</h2>
+                <div class="score">
+                    <span>Round: <span id="round-number">1</span></span>
+                    <span>Player: <span id="player-score">5</span></span>
+                    <span>AI: <span id="ai-score">5</span></span>
+                </div>
+            </div>
+            
+            <div class="battle-area">
+                <div class="battle-arena">
+                    <div class="arena-title">⚔️ ROYAL COLOSSEUM ⚔️</div>
+                    
+                    <div class="battle-field">
+                        <div class="player-section">
+                            <h3>🛡️ Your Warriors</h3>
+                            <div class="card-hand" id="player-hand">
+                                <!-- Player cards will be generated here -->
+                            </div>
+                            <div class="selected-card" id="player-selected">
+                                <p>Select your warrior!</p>
+                            </div>
+                        </div>
+                        
+                        <div class="vs-section">
+                            <div class="vs-indicator">⚔️</div>
+                            <button id="battle-btn" onclick="playBattle()" disabled>BATTLE!</button>
+                            <div id="battle-result"></div>
+                        </div>
+                        
+                        <div class="ai-section">
+                            <h3>🤖 AI Warriors</h3>
+                            <div class="card-hand" id="ai-hand">
+                                <!-- AI cards will be generated here -->
+                            </div>
+                            <div class="selected-card" id="ai-selected">
+                                <p>AI will choose...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="round-info">
+                        <span>Cards Remaining - You: <span id="player-cards-left">5</span> | AI: <span id="ai-cards-left">5</span></span>
+                    </div>
+                </div>
+                
+                <div class="trophy-case">
+                    <h4>🏆 Victory Collection</h4>
+                    <div class="won-cards" id="won-cards-display">
+                        <div class="empty-trophy">No victories yet... Claim your first trophy!</div>
+                    </div>
+                    <div class="collection-stats">
+                        Cards Won: <span id="total-won-cards">0</span> | Win Rate: <span id="win-rate">0%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <div class="control-buttons">
+                    <button onclick="resetBattleGame()">🔄 New Game</button>
+                    <button onclick="showCardDetails()">📊 Card Stats</button>
+                    <button onclick="toggleDifficulty()" id="difficulty-btn">⚔️ Difficulty: Normal</button>
+                    <button onclick="showBattleHelp()">❓ Help</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gem Crusher Game -->
+        <div id="gems-game" class="screen">
+            <div class="game-header">
+                <button class="back-btn" onclick="goToMenu()">← Back</button>
+                <h2>💎 Gem Crusher</h2>
+                <div class="score">
+                    <span>💰 Score: <span id="gem-score">0</span></span>
+                    <span>⚡ Combo: <span id="combo-count">0</span></span>
+                    <span>🎯 Level: <span id="gem-level">1</span></span>
+                </div>
+            </div>
+            
+            <div class="gem-game-area">
+                <div class="gem-board-container">
+                    <div class="combo-meter">
+                        <div class="combo-label">Combo Multiplier</div>
+                        <div class="combo-bar">
+                            <div class="combo-fill" id="combo-fill"></div>
+                        </div>
+                        <div class="combo-multiplier" id="combo-multiplier">x1</div>
+                    </div>
+                    
+                    <div class="gem-board" id="gem-board">
+                        <!-- Gems will be generated here -->
+                    </div>
+                    
+                    <div class="gem-effects" id="gem-effects">
+                        <!-- Particle effects will appear here -->
+                    </div>
+                </div>
+                
+                <div class="gem-sidebar">
+                    <div class="objectives">
+                        <h3>🎯 Objectives</h3>
+                        <div id="gem-objectives">
+                            <div class="objective">Crush 50 Red Gems</div>
+                            <div class="objective">Create 5 Combos</div>
+                            <div class="objective">Score 5000 Points</div>
+                        </div>
+                    </div>
+                    
+                    <div class="power-ups">
+                        <h3>⚡ Power-Ups</h3>
+                        <button class="power-up-btn" onclick="usePowerUp('bomb')" id="bomb-powerup">
+                            💣 Gem Bomb <span class="cooldown" id="bomb-cooldown">Ready</span>
+                        </button>
+                        <button class="power-up-btn" onclick="usePowerUp('lightning')" id="lightning-powerup">
+                            ⚡ Lightning <span class="cooldown" id="lightning-cooldown">Ready</span>
+                        </button>
+                        <button class="power-up-btn" onclick="usePowerUp('rainbow')" id="rainbow-powerup">
+                            🌈 Rainbow <span class="cooldown" id="rainbow-cooldown">Ready</span>
+                        </button>
+                    </div>
+                    
+                    <div class="gem-stats">
+                        <h4>📊 Statistics</h4>
+                        <div>Gems Crushed: <span id="gems-crushed">0</span></div>
+                        <div>Best Combo: <span id="best-combo">0</span></div>
+                        <div>Time: <span id="gem-time">00:00</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <div class="control-buttons">
+                    <button onclick="resetGemGame()">🔄 New Game</button>
+                    <button onclick="pauseGemGame()">⏸️ Pause</button>
+                    <button onclick="showGemHint()">💡 Hint</button>
+                    <button onclick="showGemHelp()">❓ Help</button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
